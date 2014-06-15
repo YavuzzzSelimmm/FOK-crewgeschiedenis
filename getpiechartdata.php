@@ -1,9 +1,18 @@
 <?php
-  $q=$_GET["q"];
-	include 'db.php';
+	$q=$_GET["q"];
 	
-  $sql_query = "  	SELECT 
-			G.Gebruikersnaam, R.Afkorting Rolafkorting, SUM(DATEDIFF(IFNULL(A.Einddatum,CURDATE()),A.Startdatum)+1) Duur
+	try {
+		// Databasegegevens ophalen
+		include 'db.php'; 
+							
+		// Verbinding maken met de database
+		$con= new PDO( "mysql:host=" . $dbserver . ";dbname=" . $dbname, $dbuser, $dbpass);  
+		// Query - Lijst van activiteiten per gebruiker
+		$sql = 
+		"SELECT 
+			  G.Gebruikersnaam
+			, R.Afkorting Rolafkorting
+			, SUM(DATEDIFF(IFNULL(A.Einddatum,CURDATE()),A.Startdatum)+1) Duur
 	  	FROM Activiteit A
 		LEFT JOIN Gebruiker G
 			ON A.FK_Gebruiker = G.PK_Gebruiker
@@ -15,42 +24,43 @@
 		GROUP BY G.Gebruikersnaam, R.Afkorting
 		ORDER BY A.Startdatum ASC, IFNULL(A.Einddatum,CURDATE()) ASC";
 
+		// Query 'klaarmaken'
+		// prepare() handelt goed af tegen SQL injecties 
+		$stmt=$con->prepare($sql); 
+		
+		// Voor de query uit
+		$stmt->execute(); 
 
-  $con = mysql_connect($dbserver,$dbuser,$dbpass);
-  if (!$con){ die('Could not connect: ' . mysql_error()); }
-  mysql_select_db($dbname, $con);
-  $result = mysql_query($sql_query);
-  
-while($row = mysql_fetch_array($result)){
-$Gebruikersnaam[] = $row['Gebruikersnaam'];
-$Rol[] = $row['Rolafkorting'];
-$Duur[] = $row['Duur'];
-}
+		// Data printen
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  
+			$Gebruikersnaam[] = $row['Gebruikersnaam'];
+			$Rol[] = $row['Rolafkorting'];
+			$Duur[] = $row['Duur'];
+		}
+		
+		$rows = array();
+		foreach($Gebruikersnaam as $index => $name) {
+			$rows[] = array("c"=>array(array("v"=>$Rol[$index],"f"=>null)
+									   , array("v"=>(int)$Duur[$index],"f"=>null))
+					  );
+		}
 
-$rows = array();
-foreach($Gebruikersnaam as $index => $name) {
-$rows[] = array("c"=>array(array(
-"v"=>$Rol[$index],
-"f"=>null
-),array(
-"v"=>(int)$Duur[$index],
-"f"=>null
-)));
-}
+		$cols =	array(array("id"=>"","label"=>"Rol","pattern"=>"","type"=>"string")
+				      , array("id"=>"","label"=>"Duur","pattern"=>"","type"=>"number"));
+				 
+		$arr = array("cols"=>$cols,"rows"=>$rows);
 
-$cols = array(array(
-"id"=>"",
-"label"=>"Rol",
-"pattern"=>"",
-"type"=>"string"),
-array(
-"id"=>"",
-"label"=>"Duur",
-"pattern"=>"",
-"type"=>"number"));
-
-$arr = array("cols"=>$cols,"rows"=>$rows);
-
-print_r(json_encode($arr));
+		print_r(json_encode($arr));
+	}
+	
+	// Errorafhandeling
+	catch(PDOException $e)
+		{
+			echo '<pre>';
+			echo 'Regel: '.$e->getLine(). '<br />';
+			echo 'Bestand: '.$e->getFile(). '<br />'; 
+			echo 'Foutmelding: '.$e->getMessage();
+			echo '</pre>'; 
+		}
 ?>
 
