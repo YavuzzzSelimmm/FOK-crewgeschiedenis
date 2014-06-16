@@ -8,7 +8,7 @@
 			, R.Afkorting
 			, R.Omschrijving
 			, A.Startdatum
-			, IFNULL(A.Einddatum, CURDATE())
+			, IFNULL(A.Einddatum, CURDATE()) Einddatum
 		 FROM Activiteit A
 		 LEFT JOIN Gebruiker G
 			ON A.FK_Gebruiker = G.PK_Gebruiker
@@ -20,7 +20,7 @@
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		if(! $row['Einddatum'])
 			$row['Einddatum'] = date("Y-m-d");
-		$output[count($output)] = Array($row['Gebruikersnaam'], strtotime($row['Startdatum'])*1000, strtotime($row['Einddatum'])*1000);
+		$output[count($output)] = Array($row['Afkorting'], strtotime($row['Startdatum'])*1000, strtotime($row['Einddatum'])*1000);
 	}
 	echo json_encode($output);
 ?>
