@@ -48,13 +48,13 @@
 									   , $Rolomschrijving[$index]
 									   , '1382704503079'
 									   , '1382704509179'));
+
 		}
 
 		$cols = array(array("id"=>"","label"=>"Rolafkorting","pattern"=>"","type"=>"string")
 					  , array("id"=>"","label"=>"Rolomschrijving","pattern"=>"","type"=>"string")
 					  , array("id"=>"","label"=>"Startdatum","pattern"=>"","type"=>"number")
 					  , array("id"=>"","label"=>"Einddatum","pattern"=>"","type"=>"number"));
-	
 		$arr = array("cols"=>$cols,"rows"=>$rows);
 
 		print_r(json_encode($arr));
