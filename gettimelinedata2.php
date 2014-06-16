@@ -2,7 +2,19 @@
 	$output = array();
 	include 'db.php';
 	$con = new PDO("mysql:host=" . $dbserver . ";dbname=" . $dbname, $dbuser, $dbpass); 
-	$sql = "SELECT gebruiker.Gebruikersnaam, rol.Afkorting, rol.Omschrijving, activiteit.Startdatum, activiteit.Einddatum FROM activiteit LEFT JOIN gebruiker ON activiteit.FK_Gebruiker = gebruiker.PK_Gebruiker LEFT JOIN rol ON activiteit.FK_Rol = rol.PK_Rol WHERE gebruiker.PK_Gebruiker = '".$_GET['user']."'";
+	$sql =
+		"SELECT
+			  G.Gebruikersnaam
+			, R.Afkorting
+			, R.Omschrijving
+			, A.Startdatum
+			, IFNULL(A.Einddatum, CURDATE())
+		 FROM Activiteit A
+		 LEFT JOIN Gebruiker G
+			ON A.FK_Gebruiker = G.PK_Gebruiker
+		LEFT JOIN Rol R
+			ON A.FK_Rol = R.PK_Rol
+		WHERE G.PK_Gebruiker = ' ".$_GET['user']. " ' ";
 	$stmt = $con->prepare($sql);
 	$stmt->execute();
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
