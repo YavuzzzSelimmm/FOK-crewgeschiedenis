@@ -1,6 +1,6 @@
 <?php
-	$dbuser="root";
-	$dbname="fok";
+	$dbuser="";
+	$dbname="";
 	$dbpass="";
-	$dbserver="127.0.0.1";
+	$dbserver="";
 ?>
