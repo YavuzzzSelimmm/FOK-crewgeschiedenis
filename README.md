@@ -9,6 +9,9 @@ Geschiedenis van de FOK!.nl-crew. Overzichten per user en forum. Zie ook http://
 
 Versiegeschiedenis
 ------------------
+- 0.0.3
+  - Timeline werkt! Indeling moet verbeterd worden.
+
 - 0.0.2
   - PDO i.p.v. MySQLi om te verbinden met de database.
   - Code opgeschoond (onnodige spaties en enters verwijderd).
