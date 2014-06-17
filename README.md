@@ -13,8 +13,13 @@ Stappen
 2. Importeer database.sql in de nieuwe database.
 3. Pas db.php aan.
 
+
 Versiegeschiedenis
 ------------------
+- 0.0.4
+  - JavaScript in aparte map (/js).
+  - Inspringen verminderd om de leesbaarheid te vergroten. Ook zijn de PHP-sluittags verwijderd.
+
 - 0.0.3
   - Naast de tabel en pie chart werkt de timeline nu ook!
 

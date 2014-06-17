@@ -1,6 +1,5 @@
 <?php
-	$dbuser="";
-	$dbname="";
-	$dbpass="";
-	$dbserver="";
-?>
+$dbuser="";
+$dbname="";
+$dbpass="";
+$dbserver="";
