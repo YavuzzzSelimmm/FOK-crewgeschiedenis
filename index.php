@@ -107,7 +107,7 @@
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  
 				?>
 				 <option value="<?=$row['PK_Gebruiker']?>"><?=$row['Gebruikersnaam']?></option>
-				<? 
+				<?php 
 						}
 					} 
 				
