@@ -7,6 +7,12 @@ Geschiedenis van de FOK!.nl-crew. Overzichten per user en forum. Zie ook http://
 - SQL-data te vinden in "database.sql".
 
 
+Stappen
+-------
+1. Maak een nieuwe database aan.
+2. Importeer database.sql in de nieuwe database.
+3. Pas db.php aan.
+
 Versiegeschiedenis
 ------------------
 - 0.0.3
