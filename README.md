@@ -11,23 +11,15 @@ Stappen
 -------
 1. Maak een nieuwe database aan.
 2. Importeer database.sql in de nieuwe database.
-3. Pas db.php aan.
+3. Pas config.php aan.
 
 
 Versiegeschiedenis
 ------------------
-- 0.0.4
-  - JavaScript in aparte map (/js).
-  - Inspringen verminderd om de leesbaarheid te vergroten. Ook zijn de PHP-sluittags verwijderd.
+- 0.0.5
+  - Begin gemaakt met de template. 
+    - Users-pagina gereed. Fora en ranglijst nog niet aan begonnen.
+  - db.php hernoemd naar config.php. Dient vanaf nu als een algemeen configuratiebestand.
+  - database.sql bevat om testredenen een nieuwe user, nieuwe subsite, nieuwe rollen en nieuwe activiteiten.
 
-- 0.0.3
-  - Naast de tabel en pie chart werkt de timeline nu ook!
-
-- 0.0.2
-  - PDO i.p.v. MySQLi om te verbinden met de database.
-  - Code opgeschoond (onnodige spaties en enters verwijderd).
-
-- 0.0.1
-  - Tabel en pie chart werkend.
-  - Timeline werkt nog niet.
-  - Overzichten voor users; (nog) geen overzichten voor fora.
+Zie VERSION.md voor de algehele versiegeschiedenis.

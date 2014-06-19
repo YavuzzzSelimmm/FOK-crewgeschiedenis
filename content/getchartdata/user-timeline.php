@@ -1,8 +1,8 @@
 <?php
 $output = array();
-include 'db.php';
-
-$con = new PDO("mysql:host=" . $dbserver . ";dbname=" . $dbname, $dbuser, $dbpass); 
+require('../../config.php'); 
+	
+$con= new PDO( "mysql:host=" . $settings["dbserver"] . ";dbname=" . $settings["dbname"], $settings["dbuser"], $settings["dbpass"]); 
 $sql =	"SELECT
 			  G.Gebruikersnaam
 			, R.Afkorting

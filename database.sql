@@ -3,16 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2014 at 04:02 AM
+-- Generation Time: Jun 19, 2014 at 11:59 PM
 -- Server version: 5.5.32-31.0-log
 -- PHP Version: 5.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
---
--- Database: `fok`
---
 
 -- --------------------------------------------------------
 
@@ -29,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `Activiteit` (
   `StartURL` varchar(255) NOT NULL,
   `EindURL` varchar(255) NOT NULL,
   PRIMARY KEY (`PK_Activiteit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `Activiteit`
@@ -44,7 +40,14 @@ INSERT INTO `Activiteit` (`PK_Activiteit`, `FK_Gebruiker`, `FK_Rol`, `Startdatum
 (6, 2, 4, '2012-09-12', NULL, 'http://forum.fok.nl/topic/1871497', ''),
 (7, 3, 2, '2013-02-02', NULL, 'http://forum.fok.nl/topic/1929012', ''),
 (8, 4, 5, '2008-11-05', '2009-11-01', 'http://forum.fok.nl/topic/1216636', 'http://forum.fok.nl/topic/1362333'),
-(9, 4, 6, '2002-07-21', NULL, 'http://forum.fok.nl/topic/165826', '');
+(9, 4, 6, '2002-07-21', NULL, 'http://forum.fok.nl/topic/165826', ''),
+(10, 5, 7, '2003-09-07', '2005-04-15', 'http://forum.fok.nl/topic/381955', 'http://forum.fok.nl/topic/689529'),
+(11, 5, 7, '2005-04-24', '2005-07-04', 'http://forum.fok.nl/topic/693180', 'http://forum.fok.nl/topic/722977'),
+(12, 5, 7, '2006-08-16', NULL, 'http://forum.fok.nl/topic/899750', ''),
+(13, 5, 8, '2008-05-09', '2012-12-25', 'http://forum.fok.nl/topic/1152979', 'http://forum.fok.nl/topic/1911042'),
+(14, 5, 8, '2013-06-06', NULL, 'http://forum.fok.nl/topic/1981112', ''),
+(15, 5, 9, '2005-01-04', '2005-04-12', '', ''),
+(16, 5, 9, '2008-09-18', NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -59,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `Gebruiker` (
   `Registratiedatum` date NOT NULL,
   `UI` varchar(255) NOT NULL,
   PRIMARY KEY (`PK_Gebruiker`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `Gebruiker`
@@ -69,7 +72,8 @@ INSERT INTO `Gebruiker` (`PK_Gebruiker`, `Gebruikersnaam`, `UserID`, `Registrati
 (1, 'zarGon', 151187, '2006-06-10', 'http://i.fokzine.net/usericons/151187/CiplakBakire.gif'),
 (2, 'Snakey', 58789, '2003-07-23', 'http://i.fokzine.net/usericons/58789/snakey_2.jpg'),
 (3, 'Marie30', 308148, '2010-06-22', 'http://i.fokzine.net/usericons/308148/uiFOK.jpg'),
-(4, 'Mike', 1212, '1999-10-24', 'http://i.fokzine.net/usericons/1212/burns2.jpg');
+(4, 'Mike', 1212, '1999-10-24', 'http://i.fokzine.net/usericons/1212/burns2.jpg'),
+(5, 'static', 15080, '2001-08-22', 'http://i.fokzine.net/usericons/15080/staticicon.gif');
 
 -- --------------------------------------------------------
 
@@ -79,23 +83,26 @@ INSERT INTO `Gebruiker` (`PK_Gebruiker`, `Gebruikersnaam`, `UserID`, `Registrati
 
 CREATE TABLE IF NOT EXISTS `Rol` (
   `PK_Rol` int(11) NOT NULL AUTO_INCREMENT,
-  `FK_Groep` int(11) NOT NULL,
+  `FK_Subsite` int(11) NOT NULL,
   `Afkorting` varchar(50) NOT NULL,
   `Omschrijving` varchar(50) NOT NULL,
   PRIMARY KEY (`PK_Rol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `Rol`
 --
 
-INSERT INTO `Rol` (`PK_Rol`, `FK_Groep`, `Afkorting`, `Omschrijving`) VALUES
+INSERT INTO `Rol` (`PK_Rol`, `FK_Subsite`, `Afkorting`, `Omschrijving`) VALUES
 (1, 1, 'R&P', 'Relaties & Psychologie'),
 (2, 1, 'KLB', 'Klaagbaak'),
 (3, 1, 'ONZ', 'Onzin voor je leven!'),
 (4, 1, 'SPT', 'Sport'),
 (5, 1, 'FA', 'Forum Admin'),
-(6, 1, 'TV', 'Film, Tv & Radio');
+(6, 1, 'TV', 'Film, Tv & Radio'),
+(7, 1, 'SHO', 'Soaps, Showbizz & Sterren'),
+(8, 1, 'KAA', 'Kaaskoppen in het Buitenland'),
+(9, 2, 'Redactie FP', 'Redactie FP');
 
 -- --------------------------------------------------------
 
@@ -107,11 +114,12 @@ CREATE TABLE IF NOT EXISTS `Subsite` (
   `PK_Subsite` int(11) NOT NULL AUTO_INCREMENT,
   `Naam` varchar(100) NOT NULL,
   PRIMARY KEY (`PK_Subsite`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `Subsite`
 --
 
 INSERT INTO `Subsite` (`PK_Subsite`, `Naam`) VALUES
-(1, 'Forum');
+(1, 'Forum'),
+(2, 'Frontpage');

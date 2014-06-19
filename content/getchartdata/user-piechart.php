@@ -2,13 +2,9 @@
 $q=$_GET["q"];
 	
 try {
-	// Databasegegevens ophalen
-	include 'db.php'; 
+	require('../../config.php'); 
 	
-	
-	// Verbinding maken met de database
-	$con= new PDO( "mysql:host=" . $dbserver . ";dbname=" . $dbname, $dbuser, $dbpass);  
-	// Query - Lijst van activiteiten per gebruiker
+	$con= new PDO( "mysql:host=" . $settings["dbserver"] . ";dbname=" . $settings["dbname"], $settings["dbuser"], $settings["dbpass"]);
 	$sql =	"SELECT 
 				  G.Gebruikersnaam
 				, R.Afkorting Rolafkorting
@@ -19,18 +15,14 @@ try {
 			LEFT JOIN Rol R
 				ON A.FK_ROL = R.PK_ROL
 			LEFT JOIN Subsite S
-				ON R.FK_Groep = S.PK_Subsite
+				ON R.FK_Subsite = S.PK_Subsite
 			WHERE G.PK_Gebruiker = " . $q . "
 			GROUP BY G.Gebruikersnaam, R.Afkorting
 			ORDER BY A.Startdatum ASC, IFNULL(A.Einddatum,CURDATE()) ASC";
 
-	// Query 'klaarmaken' - prepare() handelt goed af tegen SQL injecties 
 	$stmt=$con->prepare($sql); 
-
-	// Voor de query uit
 	$stmt->execute(); 
 
-	// Data printen
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  
 		$Gebruikersnaam[] = $row['Gebruikersnaam'];
 		$Rol[] = $row['Rolafkorting'];
