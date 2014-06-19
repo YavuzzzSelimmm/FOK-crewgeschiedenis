@@ -66,12 +66,25 @@
 				dataTable.addRows(jsonTimelineData);
 				chart.draw(dataTable,{width: 700});
 			}
+			
+			$(document).ready(function() {
+				if(document.location.hash) {
+					var hash_str_parts = document.location.hash.replace('#','').split('=');
+					if(hash_str_parts[0] == 'user') { selectUser(hash_str_parts[1]); }
+				}
+			});
+
+			function selectUser(user_id) {
+				document.location.hash = 'user='+user_id;
+				$("#user_select_form").hide();
+				drawItems(user_id);
+			}
 		</script>
 	</head>
 
 	<body>
-		<form>
-			<select name="users" onchange="drawItems(this.value)">
+		<form id="user_select_form">
+			<select name="users" onchange="selectUser(this.value)">
 				<option value="">Gebruiker:</option>
 				<?php 
 				try {
@@ -112,7 +125,7 @@
 				?>
 			</select>
 		</form>
-			
+		
 		<div id="table_div"></div>
 		<br /><br /><br />
 		<div id="chart_div"></div>
