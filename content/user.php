@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="page-header" id="user_select_form">
+	<div class="page-header" id="userselect">
 		<h1>Users</h1>
 		<ol>
 		<?php 
@@ -10,6 +10,7 @@
 			$sql=	"SELECT
 						PK_Gebruiker
 						, Gebruikersnaam
+						, UserID
 					FROM Gebruiker
 					ORDER BY Gebruikersnaam ASC"; 
 				
@@ -17,7 +18,7 @@
 			$stmt->execute(); 
 	
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  
-				echo '<li><a href="?type=user#user=' . $row['PK_Gebruiker'] . '" onClick="selectUser('. $row['PK_Gebruiker'] .')">' . $row['Gebruikersnaam'] . '</a></li>';
+				echo '<li><a href="?type=user#id=' . $row['UserID'] . '" onClick="selectUser('. $row['UserID'] .')">' . $row['Gebruikersnaam'] . '</a></li>';
 			}
 		} 
 		

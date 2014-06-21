@@ -14,7 +14,7 @@ $sql =	"SELECT
 			ON A.FK_Gebruiker = G.PK_Gebruiker
 		LEFT JOIN Rol R
 			ON A.FK_Rol = R.PK_Rol
-		WHERE G.PK_Gebruiker = ' ".$_GET['user']. " ' ";
+		WHERE G.UserID = ' ".$_GET['id']. " ' ";
 	
 $stmt = $con->prepare($sql);
 $stmt->execute();

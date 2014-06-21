@@ -1,5 +1,5 @@
 <?php
-$q=$_GET["q"];
+$id=$_GET["id"];
 	
 try {
 	require('../../config.php'); 
@@ -21,7 +21,7 @@ try {
 				ON A.FK_ROL = R.PK_ROL
 			LEFT JOIN Subsite S
 				ON R.FK_Subsite = S.PK_Subsite
-			WHERE G.PK_Gebruiker = " . $q . "
+			WHERE G.UserID = " . $id . "
 			ORDER BY A.Startdatum ASC, IFNULL(A.Einddatum,CURDATE()) ASC";
 
 	$stmt=$con->prepare($sql); 

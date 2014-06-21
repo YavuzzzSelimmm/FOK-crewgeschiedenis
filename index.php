@@ -28,13 +28,13 @@
 			$(document).ready(function() {
 				if(document.location.hash) {
 					var hash_str_parts = document.location.hash.replace('#','').split('=');
-					if(hash_str_parts[0] == 'user') { selectUser(hash_str_parts[1]); }
+					if(hash_str_parts[0] == 'id') { selectUser(hash_str_parts[1]); }
 				}
 			});
 
 			function selectUser(user_id) {
-				document.location.hash = 'user='+user_id;
-				$("#user_select_form").hide();
+				document.location.hash = 'id='+user_id;
+				$("#userselect").hide();
 				drawItems(user_id);
 			}
 		</script>

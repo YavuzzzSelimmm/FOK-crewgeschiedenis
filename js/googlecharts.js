@@ -4,14 +4,14 @@ google.load('visualization', '1', {'packages': ['corechart', 'table', 'timeline'
 function drawItems(num) {
 	var jsonPieChartData = $.ajax({
 		url: "content/getchartdata/user-piechart.php",
-		data: "q=" + num,
+		data: "id=" + num,
 		dataType: "json",
 		async: false
 	}).responseText;
 
 	var jsonTableData = $.ajax({
 		url: "content/getchartdata/user-table.php",
-		data: "q=" + num,
+		data: "id=" + num,
 		dataType: "json",
 		async: false
 	}).responseText;
@@ -22,7 +22,7 @@ function drawItems(num) {
 		dataType: "JSON",
 		async: false,
 		data: {
-			user: num
+			id: num
 		},
 		success: function(callback) {
 			jsonTimelineData = callback;
