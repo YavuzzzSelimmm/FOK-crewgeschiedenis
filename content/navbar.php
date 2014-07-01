@@ -15,6 +15,7 @@
 				<li><a href="?type=user">Users</a></li>
 				<li><a href="?type=forum">Fora</a></li>
 				<li><a href="?type=ranglijst">Ranglijst</a></li>
+				<li><a href="?admin=index">Admin</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>

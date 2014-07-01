@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -25,16 +26,39 @@
 		<script type="text/javascript" src="js/googlecharts.js"></script>
 		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript">
+			var data_type='<?php echo htmlentities($_GET['type']); ?>';
+			
 			$(document).ready(function() {
 				if(document.location.hash) {
-					var hash_str_parts = document.location.hash.replace('#','').split('=');
-					if(hash_str_parts[0] == 'id') { selectUser(hash_str_parts[1]); }
+					handleLocationHash(document.location.hash);
 				}
 			});
-
+			
+			handleLocationHash = function(location_hash) {
+				if(location_hash.length > 0) {
+					var hash = location_hash.substr(1);
+					var hash_parts = hash.split('&');
+					var post_vars = {};
+					
+					for(var a in hash_parts) {
+						var hash_sub_parts = hash_parts[a].split('=', 2);
+						if(hash_sub_parts.length === 2) {
+							post_vars[hash_sub_parts[0]] = hash_sub_parts[1]
+						}
+					}
+					
+					if(post_vars.id != undefined) {
+						if(data_type == 'user') {
+							selectUser(post_vars.id);
+						}
+					}
+				}
+			};
+			
 			function selectUser(user_id) {
-				document.location.hash = 'id='+user_id;
 				$("#userselect").hide();
+				$("#userinfo").show();
+				$("#userid").show(); $("#userid").html(user_id);
 				drawItems(user_id);
 			}
 		</script>
@@ -48,6 +72,9 @@
 		if( isset( $_GET['type']) && file_exists( "content/" . str_replace( "../", "", $_GET['type'] ) . ".php" ) ) {
 			require_once( "content/" . $_GET['type'] . ".php" );
 		}
+		elseif( isset( $_GET['admin']) && file_exists( "content/admin/" . str_replace( "../", "", $_GET['admin'] ) . ".php" ) ) {
+			require_once( "content/admin/" . $_GET['admin'] . ".php" );
+		}
 		else
 		{ require_once( "content/home.php" ); 	}
 		?>
@@ -57,3 +84,4 @@
 		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
+<?php ob_end_flush(); ?>
