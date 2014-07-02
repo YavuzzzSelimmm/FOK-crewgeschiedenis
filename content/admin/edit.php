@@ -380,9 +380,9 @@ if (isset($_GET['rol'])) {
 				}
 				else {
 			
-				/* UPDATEQUERY WERKT NIET
-				   Updaten van 'Subsitenaam' lukt niet.
-				   Updaten van Rolafkorting en Rolomschrinving lukt wel.
+				/* UPDATE QUERY DOES NOT WORK
+				   Updating 'Subsitenaam' does not work.
+				   Updating 'Rolafkorting' en 'Rolomschrinving' works.
 				*/
 					// if everything is fine, update the record in the database  
 					// Update Rolafkorting + Rolomschrijving
@@ -468,9 +468,9 @@ if (isset($_GET['rol'])) {
 				renderForm($Subsitenaam, $Rolafkorting, $Rolomschrijving, $Foutmelding);
 			}
 			else {
-			/* INSERTQUERY WERKT NIET
-				Bij het inserten van het veld 'Subsitenaam' moet de bijbehorende PK_Subsite uit de tabel 'Subsite' gezocht worden.
-				In de tabel 'Rol' wordt deze waarde opgeslagen in de column 'FK_Subsite'.
+			/* INSERT QUERY DOES NOT WORK
+				When inserting field 'Subsitenaam' (subsite name), the associated PK_Subsite (primary key) has to be looked up from the table 'Subsite'.
+				  In the table 'Rol' (role), this value value is stored in the column 'FK_Subsite'.
 			*/
 				// insert the new record into the database
 				if ($stmt = $mysqli->prepare("INSERT Rol () VALUES (? ? ?)")) {
@@ -478,7 +478,7 @@ if (isset($_GET['rol'])) {
 					$stmt->execute();
 					$stmt->close();
 				}
-			/* INSERTQUERY WEKRT NIET */
+			/* INSERT QUERY DOES NOT WORK */
 			
 				// show an error if the query has an error
 				else {
@@ -577,9 +577,9 @@ if (isset($_GET['activiteit'])) {
 				}
 				else {
 			
-				/* UPDATEQUERY WERKT NIET
-						Updaten van 'Gebruikersnaam' + 'Subsitenaam' + 'Rolafkorting' lukt niet.
-						Updaten van 'Startdatum' + 'Einddatum' + 'StartURL' + 'EindURL' lukt wel.
+				/* UPDATE QUERY DOES NOT WORK
+						Updating 'Gebruikersnaam' + 'Subsitenaam' + 'Rolafkorting' does not work.
+						Updating 'Startdatum' + 'Einddatum' + 'StartURL' + 'EindURL' works.
 				*/
 					// if everything is fine, update the record in the database
 					// Update Startdatum + Einddatum + StartURL + EindURL
@@ -595,7 +595,7 @@ if (isset($_GET['activiteit'])) {
 						$stmt->execute();
 						$stmt->close();
 					}
-				/* UPDATEQUERY WERKT NIET */
+				/* UPDATE QUERY DOES NOT WORK */
 					
 					// show an error message if the query has an error
 					else {
@@ -669,13 +669,13 @@ if (isset($_GET['activiteit'])) {
 				renderForm($Gebruikersnaam, $Subsitenaam, $Rolafkorting, $Startdatum, $Einddatum, $StartURL, $EindURL, $Foutmelding);
 			}
 			else {
-			/* INSERTQUERY WERKT NIET
-				Bij het inserten van het veld 'Gebruikersnaam' moet de bijbehorende PK_Gebruiker uit de tabel 'Gebruiker' gezocht worden.
-				  In de tabel 'Activiteit' wordt deze waarde opgeslagen in de column 'FK_Gebruiker'.
-				Bij het inserten van het veld 'Subsitenaam' moet de bijbehorende PK_Subsite uit de tabel 'Subsite' gezocht worden.
-				  In de tabel 'activiteit' wordt deze waarde opgeslagen in de column 'FK_Subsite'.
-				Bij het inserten van het veld 'Rolafkorting' moet de bijbehorende PK_Rol uit de tabel 'Rol' gezocht worden.
-				  In de tabel 'Activiteit' wordt deze waarde opgeslagen in de column 'FK_Rol'.
+			/* INSERT QUERY DOES NOT WORK
+				When inserting field 'Gebruikersnaam' (username), the associated PK_Gebruiker (primary key) has to be looked up from the table 'Gebruiker'.
+				  In the table 'Activiteit' (activity), this value value is stored in the column 'FK_Gebruiker'.
+				When inserting field 'Subsitenaam' (subsite name), the associated PK_Subsite (primary key) has to be looked up from the table 'Subsite'.
+				  In the table 'Activiteit' (activity), this value value is stored in the column 'FK_Subsite'.
+				When inserting field 'Rolafkorting' (role abbreviation), the associated PK_Rol (primary key) has to be looked up from the table 'Rol'.
+				  In the table 'Activiteit' (activity), this value value is stored in the column 'FK_Rol'.
 			*/
 				// insert the new record into the database
 				if ($stmt = $mysqli->prepare("INSERT Activiteit () VALUES (? ? ? ? ? ? ?)")) {
@@ -683,7 +683,7 @@ if (isset($_GET['activiteit'])) {
 					$stmt->execute();
 					$stmt->close();
 				}
-			/* INSERTQUERY WEKRT NIET */
+			/* INSERT QUERY DOES NOT WORK */
 			
 				// show an error if the query has an error
 				else {

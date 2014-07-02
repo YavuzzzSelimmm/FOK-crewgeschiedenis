@@ -200,7 +200,7 @@ elseif (isset($_GET['activiteit'])) {
 			
 		// if there are no records in the database, display an alert message
 		else {
-			echo "No results to display!";
+			echo "Geen activiteiten!";
 		}
 	}
 	

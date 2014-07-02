@@ -68,6 +68,7 @@
 		<!-- Static navbar -->
 		<?php require_once('content/navbar.php'); ?>
 		
+		<!-- Content -->
 		<?php
 		if( isset( $_GET['type']) && file_exists( "content/" . str_replace( "../", "", $_GET['type'] ) . ".php" ) ) {
 			require_once( "content/" . $_GET['type'] . ".php" );
@@ -78,7 +79,7 @@
 		else
 		{ require_once( "content/home.php" ); 	}
 		?>
-
+		<!-- /Content -->
 		
 		<!-- Bootstrap core JavaScript -->
 		<script src="js/bootstrap.min.js"></script>

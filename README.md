@@ -1,25 +1,26 @@
 FOK-crewgeschiedenis
 ====================
 
-Geschiedenis van de FOK!.nl-crew. Overzichten per user en forum. Zie ook http://fok.zevkiselim.nl/crew/.
+History of the FOK!.nl crew. A nice overview per user and forum. All dynamic, using PHP, MySQL and Google Charts.
+A manual version made prior to this project is available on http://fok.zevkiselim.nl/crew/.
 
-- Code gebruikt van http://sophiedogg.com/creating-a-google-pie-chart-using-sql-data/.
-- SQL-data te vinden in "database.sql".
+- Using code from a nice tutorial on http://sophiedogg.com/creating-a-google-pie-chart-using-sql-data/.
+- "database.sql": the MySQL database dump.
 
 
-Stappen
+Steps
 -------
-1. Maak een nieuwe database aan.
-2. Importeer database.sql in de nieuwe database.
-3. Pas config.php aan.
+1. Create a new database.
+2. Import database.sql into the new database.
+3. Edit config.php.
 
 
-Versiegeschiedenis
+Version history
 ------------------
 - 0.0.5
-  - Begin gemaakt met de template. 
-    - Users-pagina gereed. Fora en ranglijst nog niet aan begonnen.
-  - db.php hernoemd naar config.php. Dient vanaf nu als een algemeen configuratiebestand.
-  - database.sql bevat om testredenen een nieuwe user, nieuwe subsite, nieuwe rollen en nieuwe activiteiten.
+  - Started with the template. 
+    - Users ('gebruikers') page ready. Not started with the forums and ranking ('ranglijst') pages yet.
+  - Renamed db.php to config.php. Now serves as a general configuration file.
+  - database.sql contains new records of user, susbite, role and activity to test the charts on users with multiple subsites.
 
-Zie VERSION.md voor de algehele versiegeschiedenis.
+See VERSION.md for the complete version history.

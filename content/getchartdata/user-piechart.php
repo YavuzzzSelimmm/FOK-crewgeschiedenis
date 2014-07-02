@@ -43,7 +43,7 @@ try {
 	print_r(json_encode($arr));
 }
 	
-// Errorafhandeling
+// Error handling
 catch(PDOException $e) {
 	echo '<pre>';
 	echo 'Regel: '.$e->getLine(). '<br />';

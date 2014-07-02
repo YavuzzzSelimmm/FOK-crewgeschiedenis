@@ -1,3 +1,10 @@
+<?
+/* 
+User
+=======
+List of users, with a link to their page with charts.
+*/
+?>
 <div class="container">
 	<div class="page-header" id="userselect">
 		<h1>Users</h1>
@@ -22,7 +29,7 @@
 			}
 		} 
 		
-		// Errorafhandeling
+		// Error handeling
 		catch(PDOException $e) {
 			echo '<pre>';
 			echo 'Regel: '.$e->getLine(). '<br />';
@@ -35,8 +42,8 @@
 	</div>
 
 	<?php 
-/* USERINFO WERKT NIET 
-   Zou de volgende info moeten tonen: UserID + Usernaam + Registratiedatum + UI
+/* USERINFO DOES NOT WORK 
+   Should show the following columns from table 'Gebruiker' (User): Gebruikersnaam + UserID + Registratiedatum + UI
 */
 	?>
 	<div class="page-header" id="userinfo" style="display:none;">
@@ -67,7 +74,7 @@
 			}
 		} 
 		
-		// Errorafhandeling
+		// Error handling
 		catch(PDOException $e) {
 			echo '<pre>';
 			echo 'Regel: '.$e->getLine(). '<br />';
@@ -75,7 +82,7 @@
 			echo 'Foutmelding: '.$e->getMessage();
 			echo '</pre>'; 
 		}
-/* USERINFO WERKT NIET */		
+/* USERINFO DOES NOT WORK */		
 		?>
 	</div>
 	<div id="table_div"></div>
@@ -83,4 +90,4 @@
 	<div id="chart_div"></div>
 	<br /><br /><br />
 	<div id="timeline_div"></div>
-</div><!-- /container -->
+</div>

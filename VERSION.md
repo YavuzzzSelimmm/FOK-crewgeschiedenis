@@ -1,23 +1,23 @@
-Versiegeschiedenis
+VERSION HISTORY
 ------------------
 - 0.0.5
-  - Begin gemaakt met de template. 
-    - Users-pagina gereed. Fora en ranglijst nog niet aan begonnen.
-  - db.php hernoemd naar config.php. Dient vanaf nu als een algemeen configuratiebestand.
-  - database.sql bevat om testredenen een nieuwe user, nieuwe subsite, nieuwe rollen en nieuwe activiteiten.
+  - Started with the template. 
+    - Users ('gebruikers') page ready. Not started with the forums and ranking ('ranglijst') pages yet.
+  - Renamed db.php to config.php. Now serves as a general configuration file.
+  - database.sql contains new records of user, susbite, role and activity to test the charts on users with multiple subsites.
 
 - 0.0.4
-  - JavaScript in aparte map (/js).
-  - Inspringen verminderd om de leesbaarheid te vergroten. Ook zijn de PHP-sluittags verwijderd.
+  - Moved JavaScript to its own directory (/js).
+  - Removed indents to improve readability of the code. Also removed the PHP close tags.
 
 - 0.0.3
-  - Naast de tabel en pie chart werkt de timeline nu ook!
+  - Timeline works! All three charts (table / pie chart / timeline) are fully working.
 
 - 0.0.2
-  - PDO als API om te verbinden met de database (i.p.v. mysql).
-  - Code opgeschoond (onnodige spaties en enters verwijderd).
+  - Using PDO (instead of mysql) as API to connect to the database.
+  - Code cleanup (unnecessary spaces and carriage returns removed).
 
 - 0.0.1
-  - Tabel en pie chart werkend.
-  - Timeline werkt nog niet.
-  - Overzichten voor users; (nog) geen overzichten voor fora.
+  - Table and pie chart are displayed correctly.
+  - Timeline does not work.
+  - Only list of 'gebruikers' (users), no list of forums yet.

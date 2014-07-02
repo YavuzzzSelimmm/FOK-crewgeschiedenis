@@ -1,3 +1,11 @@
+<?
+/* 
+Home
+=======
+Landing page.
+Also shown when a not existing type (?type=) or admin (?admin=) is requested.
+*/
+?>
 <div class="container">
 	<div class="page-header">
 		<h1>FOK!crewgeschiedenis</h1>
