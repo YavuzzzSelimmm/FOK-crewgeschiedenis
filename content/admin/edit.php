@@ -1,13 +1,27 @@
- <div class="container">
+<?php 
+
+    // First we execute our common code to connection to the database and start the session 
+    require("content/admin/config.php"); 
+     
+    // At the top of the page we check to see whether the user is logged in or not 
+    if(empty($_SESSION['user'])) 
+    { 
+        // If they are not, we redirect them to the login page. 
+        header("Location: ?admin=inloggen"); 
+         
+        // Remember that this die statement is absolutely critical.  Without it, 
+        // people can view your members-only content without logging in. 
+        die("Redirecting to login."); 
+    } 
+     
+    // Everything below this point in the file is secured by the login system 
+     
+    // We can display the user's username to them by reading it from the session array.  Remember that because 
+    // a username is user submitted content we must use htmlentities on it before displaying it to the user. 
+?>
+<div class="container">
 	<div class="jumbotron">
-		<h2>Admin</h2>
-		<div>
-			<a href="?admin=index"><button class="btn" type="button">Index</button></a>
-			<a href="?admin=index&user"><button class="btn" type="button">User</button></a>
-			<a href="?admin=index&subsite"><button class="btn" type="button">Subsite</button></a>
-			<a href="?admin=index&rol"><button class="btn" type="button">Rol</button></a>
-			<a href="?admin=index&activiteit"><button class="btn" type="button">Activiteit</button></a>
-		</div>
+		<?php require('content/navbar-admin.php'); ?>
 	</div>
 <?
 
@@ -380,9 +394,9 @@ if (isset($_GET['rol'])) {
 				}
 				else {
 			
-				/* UPDATE QUERY DOES NOT WORK
-				   Updating 'Subsitenaam' does not work.
-				   Updating 'Rolafkorting' en 'Rolomschrinving' works.
+				/* UPDATEQUERY WERKT NIET
+				   Updaten van 'Subsitenaam' lukt niet.
+				   Updaten van Rolafkorting en Rolomschrinving lukt wel.
 				*/
 					// if everything is fine, update the record in the database  
 					// Update Rolafkorting + Rolomschrijving
@@ -468,9 +482,9 @@ if (isset($_GET['rol'])) {
 				renderForm($Subsitenaam, $Rolafkorting, $Rolomschrijving, $Foutmelding);
 			}
 			else {
-			/* INSERT QUERY DOES NOT WORK
-				When inserting field 'Subsitenaam' (subsite name), the associated PK_Subsite (primary key) has to be looked up from the table 'Subsite'.
-				  In the table 'Rol' (role), this value value is stored in the column 'FK_Subsite'.
+			/* INSERTQUERY WERKT NIET
+				Bij het inserten van het veld 'Subsitenaam' moet de bijbehorende PK_Subsite uit de tabel 'Subsite' gezocht worden.
+				In de tabel 'Rol' wordt deze waarde opgeslagen in de column 'FK_Subsite'.
 			*/
 				// insert the new record into the database
 				if ($stmt = $mysqli->prepare("INSERT Rol () VALUES (? ? ?)")) {
@@ -478,7 +492,7 @@ if (isset($_GET['rol'])) {
 					$stmt->execute();
 					$stmt->close();
 				}
-			/* INSERT QUERY DOES NOT WORK */
+			/* INSERTQUERY WEKRT NIET */
 			
 				// show an error if the query has an error
 				else {
@@ -577,9 +591,9 @@ if (isset($_GET['activiteit'])) {
 				}
 				else {
 			
-				/* UPDATE QUERY DOES NOT WORK
-						Updating 'Gebruikersnaam' + 'Subsitenaam' + 'Rolafkorting' does not work.
-						Updating 'Startdatum' + 'Einddatum' + 'StartURL' + 'EindURL' works.
+				/* UPDATEQUERY WERKT NIET
+						Updaten van 'Gebruikersnaam' + 'Subsitenaam' + 'Rolafkorting' lukt niet.
+						Updaten van 'Startdatum' + 'Einddatum' + 'StartURL' + 'EindURL' lukt wel.
 				*/
 					// if everything is fine, update the record in the database
 					// Update Startdatum + Einddatum + StartURL + EindURL
@@ -595,7 +609,7 @@ if (isset($_GET['activiteit'])) {
 						$stmt->execute();
 						$stmt->close();
 					}
-				/* UPDATE QUERY DOES NOT WORK */
+				/* UPDATEQUERY WERKT NIET */
 					
 					// show an error message if the query has an error
 					else {
@@ -669,13 +683,13 @@ if (isset($_GET['activiteit'])) {
 				renderForm($Gebruikersnaam, $Subsitenaam, $Rolafkorting, $Startdatum, $Einddatum, $StartURL, $EindURL, $Foutmelding);
 			}
 			else {
-			/* INSERT QUERY DOES NOT WORK
-				When inserting field 'Gebruikersnaam' (username), the associated PK_Gebruiker (primary key) has to be looked up from the table 'Gebruiker'.
-				  In the table 'Activiteit' (activity), this value value is stored in the column 'FK_Gebruiker'.
-				When inserting field 'Subsitenaam' (subsite name), the associated PK_Subsite (primary key) has to be looked up from the table 'Subsite'.
-				  In the table 'Activiteit' (activity), this value value is stored in the column 'FK_Subsite'.
-				When inserting field 'Rolafkorting' (role abbreviation), the associated PK_Rol (primary key) has to be looked up from the table 'Rol'.
-				  In the table 'Activiteit' (activity), this value value is stored in the column 'FK_Rol'.
+			/* INSERTQUERY WERKT NIET
+				Bij het inserten van het veld 'Gebruikersnaam' moet de bijbehorende PK_Gebruiker uit de tabel 'Gebruiker' gezocht worden.
+				  In de tabel 'Activiteit' wordt deze waarde opgeslagen in de column 'FK_Gebruiker'.
+				Bij het inserten van het veld 'Subsitenaam' moet de bijbehorende PK_Subsite uit de tabel 'Subsite' gezocht worden.
+				  In de tabel 'activiteit' wordt deze waarde opgeslagen in de column 'FK_Subsite'.
+				Bij het inserten van het veld 'Rolafkorting' moet de bijbehorende PK_Rol uit de tabel 'Rol' gezocht worden.
+				  In de tabel 'Activiteit' wordt deze waarde opgeslagen in de column 'FK_Rol'.
 			*/
 				// insert the new record into the database
 				if ($stmt = $mysqli->prepare("INSERT Activiteit () VALUES (? ? ? ? ? ? ?)")) {
@@ -683,7 +697,7 @@ if (isset($_GET['activiteit'])) {
 					$stmt->execute();
 					$stmt->close();
 				}
-			/* INSERT QUERY DOES NOT WORK */
+			/* INSERTQUERY WEKRT NIET */
 			
 				// show an error if the query has an error
 				else {

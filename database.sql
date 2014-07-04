@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2014 at 11:59 PM
+-- Generation Time: Jul 04, 2014 at 04:24 AM
 -- Server version: 5.5.32-31.0-log
 -- PHP Version: 5.3.27
 
@@ -123,3 +123,27 @@ CREATE TABLE IF NOT EXISTS `Subsite` (
 INSERT INTO `Subsite` (`PK_Subsite`, `Naam`) VALUES
 (1, 'Forum'),
 (2, 'Frontpage');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Admin`
+--
+
+CREATE TABLE IF NOT EXISTS `Admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` char(64) COLLATE utf8_unicode_ci NOT NULL,
+  `salt` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `Admin`
+--
+
+INSERT INTO `Admin` (`id`, `username`, `password`, `salt`, `email`) VALUES
+(1, 'admin', 'c78040f76ae23393d6009025f05c41324812ceb3597e379eaefa27eb0608e6ac', '675905e95b7cca30', 'ad@m.in');

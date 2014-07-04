@@ -1,13 +1,27 @@
+<?php 
+
+    // First we execute our common code to connection to the database and start the session 
+    require("content/admin/config.php"); 
+     
+    // At the top of the page we check to see whether the user is logged in or not 
+    if(empty($_SESSION['user'])) 
+    { 
+        // If they are not, we redirect them to the login page. 
+        header("Location: ?admin=inloggen"); 
+         
+        // Remember that this die statement is absolutely critical.  Without it, 
+        // people can view your members-only content without logging in. 
+        die("Redirecting to login."); 
+    } 
+     
+    // Everything below this point in the file is secured by the login system 
+     
+    // We can display the user's username to them by reading it from the session array.  Remember that because 
+    // a username is user submitted content we must use htmlentities on it before displaying it to the user. 
+?>
 <div class="container">
 	<div class="jumbotron">
-		<h2>Admin</h2>
-		<div>
-			<a href="?admin=index"><button class="btn" type="button">Index</button></a>
-			<a href="?admin=index&user"><button class="btn" type="button">User</button></a>
-			<a href="?admin=index&subsite"><button class="btn" type="button">Subsite</button></a>
-			<a href="?admin=index&rol"><button class="btn" type="button">Rol</button></a>
-			<a href="?admin=index&activiteit"><button class="btn" type="button">Activiteit</button></a>
-		</div>
+		<?php require('content/navbar-admin.php'); ?>
 	</div>
 <?
 include('config.php');
@@ -200,7 +214,7 @@ elseif (isset($_GET['activiteit'])) {
 			
 		// if there are no records in the database, display an alert message
 		else {
-			echo "Geen activiteiten!";
+			echo "No results to display!";
 		}
 	}
 	
