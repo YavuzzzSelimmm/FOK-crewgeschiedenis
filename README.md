@@ -15,8 +15,8 @@ Steps
 
 Admin
 -----
-Default admin user: admin
-Defualt admin pass: admin
+- Default admin user: admin
+- Defualt admin pass: admin
 
 New accounts can be created after logging in.
  
@@ -25,7 +25,7 @@ Version history
 ----------------
 - 0.0.6
   - Secured the admin area. Fixed [issue #4] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/4).
-  - Issues [#5] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/5), [issue #6] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/6) and [#8] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/8) still exist.
+  - Issues [#5] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/5), [#6] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/6) and [#8] (https://github.com/zarGonnn/FOK-crewgeschiedenis/issues/8) still exist.
   
 See VERSION.md for the complete version history.
 
@@ -36,6 +36,7 @@ A special thanks
 - Ben for his [tutorial on viewing, editing, adding and deleting MySQL records with PHP] (http://www.killersites.com/community/index.php?/topic/3064-basic-php-system-view-edit-add-delete-records-with-mysqli/).
 - E-Oreo for his [secure login system] (http://forums.devshed.com/php-faqs-stickies-167/program-basic-secure-login-system-using-php-mysql-891201.html).
 
+FOK!forum:
 - bondage for his help with JavaScript and jQuery!
 - esv7 for the scraper.
 - All others on the FOK!forum for the feedback.
