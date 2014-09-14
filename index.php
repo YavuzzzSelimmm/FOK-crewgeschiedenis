@@ -1,88 +1,89 @@
-<?php ob_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
+<html>
+    <head>
+        <title>FOK!crewgeschiedenis</title>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="robots" content="follow, index" />
 		
-		<title>FOK!crewgeschiedenis</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+        <link rel="stylesheet" href="css/isotope.css" />
+        <link rel="stylesheet" href="css/color_scheme.css" />
+        <link rel="stylesheet" href="css/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+	<!--[if lte IE 8]>
+	    <link rel="stylesheet" type="text/css" href="css/IE-fix.css" />
+	<![endif]-->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="css/font-awesome.css" />
+        <link rel="stylesheet" href="css/font-awesome-ie7.css" />
+        <link rel="stylesheet" href="css/flexslider.css" />
 		
-		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!-- Custom styles for this template -->
-		<link href="css/navbar-static-top.css" rel="stylesheet">
-		
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-		
-		<!-- Load Google Charts jsapi -->
-		<script type="text/javascript" src="js/jsapi"></script>
-		<script type="text/javascript" src="js/googlecharts.js"></script>
-		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript">
-			var data_type='<?php echo htmlentities($_GET['type']); ?>';
-			
-			$(document).ready(function() {
-				if(document.location.hash) {
-					handleLocationHash(document.location.hash);
-				}
-			});
-			
-			handleLocationHash = function(location_hash) {
-				if(location_hash.length > 0) {
-					var hash = location_hash.substr(1);
-					var hash_parts = hash.split('&');
-					var post_vars = {};
-					
-					for(var a in hash_parts) {
-						var hash_sub_parts = hash_parts[a].split('=', 2);
-						if(hash_sub_parts.length === 2) {
-							post_vars[hash_sub_parts[0]] = hash_sub_parts[1]
-						}
-					}
-					
-					if(post_vars.id != undefined) {
-						if(data_type == 'user') {
-							selectUser(post_vars.id);
-						}
-					}
-				}
-			};
-			
-			function selectUser(user_id) {
-				$("#userselect").hide();
-				$("#userinfo").show();
-				$("#userid").show(); $("#userid").html(user_id);
-				drawItems(user_id);
-			}
-		</script>
-	</head>
+        <meta name="google" value="notranslate" />
+    </head>
+    <body>
 	
-	<body>
-		<!-- Static navbar -->
-		<?php require_once('content/navbar.php'); ?>
-		
-		<!-- Content -->
-		<?php
-		if( isset( $_GET['type']) && file_exists( "content/" . str_replace( "../", "", $_GET['type'] ) . ".php" ) ) {
-			require_once( "content/" . $_GET['type'] . ".php" );
-		}
-		elseif( isset( $_GET['admin']) && file_exists( "content/admin/" . str_replace( "../", "", $_GET['admin'] ) . ".php" ) ) {
-			require_once( "content/admin/" . $_GET['admin'] . ".php" );
-		}
-		else
-		{ require_once( "content/home.php" ); 	}
-		?>
-		<!-- /Content -->
-		
-		<!-- Bootstrap core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+        <div class="top_line"></div>
+
+        <header>
+            <div class="container">
+                <div class="row">
+<?php include("content/header.php"); ?>
+                </div>
+            </div>          
+        </header>
+	
+        <div class="main-content">
+            <div class="container">
+                <div class="row show-frid">
+                    <div class="span12">
+
+<?php include("content/nav.php") ?>
+                    </div>
+                </div>
+<?php
+	if( isset( $_GET['type']) && file_exists( "content/type/" . str_replace( "../", "", $_GET['type'] ) . ".php" ) ) {
+	require_once( "content/type/" . $_GET['type'] . ".php" );
+	}
+	else
+	{
+	echo "";
+	}
+?>
+<?php
+	if( isset( $_GET['user']) && file_exists( "content/user/" . str_replace( "../", "", $_GET['user'] ) . ".php" ) ) {
+	require_once( "content/user/" . $_GET['user'] . ".php" );
+	}
+	else
+	{
+	echo "";
+	}
+?>
+<?php
+	if( isset( $_GET['forum']) && file_exists( "content/forum/" . str_replace( "../", "", $_GET['forum'] ) . ".php" ) ) {
+	require_once( "content/forum/" . $_GET['forum'] . ".php" );
+	}
+	else
+	{
+	echo "";
+	}
+?>
+            </div>
+        </div>
+	
+<?php include("content/footer.php"); ?>	
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8288192-8', 'zevkiselim.nl');
+  ga('send', 'pageview');
+
+</script>
 	</body>
 </html>
-<?php ob_end_flush(); ?>
