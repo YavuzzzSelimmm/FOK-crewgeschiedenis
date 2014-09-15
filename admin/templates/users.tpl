@@ -28,7 +28,7 @@
             <td>{$user.UserID}</td>
             <td>{$user.Registratiedatum|date_format:"%d-%m-%Y"}</td>
             <td><img src="{$user.UI}"/></td>
-            <td><a href="?admin=user&PK_Gebruiker={$user.PK_Gebruiker}">Wijzig</a></td>
+            <td><a href="?admin=user&id={$user.PK_Gebruiker}">Wijzig</a></td>
             <td>Verwijder</td>
         </tr>
     {/foreach}
