@@ -15,5 +15,6 @@ if(isset($_GET["delete_user"])){
     header("location: index.php?admin=users");
 }
 
+
 $smarty->assign("subsites", $subsites->haal_subsites());
 $smarty->display($template_file);   
