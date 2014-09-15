@@ -20,6 +20,23 @@ class Rollen{
         }
     }
     
+    function haal_rollen_voor_subsite($PK_Subsite){
+        global $db;
+        
+        try{
+            $stmt = $db->prepare("SELECT PK_Rol, Omschrijving
+                                    FROM Rol
+                                    WHERE FK_Subsite=:subsite");
+            
+            $stmt->execute(array(":subsite" => $PK_Subsite));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        } catch(PDOException $e){
+            echo $e->getMessage;
+        }
+    }
+    
+    
     function haal_rollen(){
         global $db;
         

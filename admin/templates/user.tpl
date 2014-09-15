@@ -108,7 +108,9 @@ function add_row(obj){
 
 </script>
 
+
 <div id="gebruiker">
+<img src="images/b_back.png" width="60" onclick="history.go(-1);" />
 
     <table>
     <tr>
@@ -157,7 +159,7 @@ function add_row(obj){
     <table id="RolToevoegen">
         <input type="hidden" name="aantal_rijen" id="aantal_rijen" value="1" />
 
-{if isset($rollen_gebruiker)}        
+{if (isset($rollen_gebruiker) && count($rollen_gebruiker) > 0)}        
     {foreach $rollen_gebruiker as $index_row=>$rol_gebruiker}
         <tr class="row" id="row_{$index_row+1}">
             <td>Rol:</td>

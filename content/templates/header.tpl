@@ -11,6 +11,15 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+<script src="js/jQuery-contextMenu/src/jquery.ui.position.js" type="text/javascript"></script>
+<script src="js/jQuery-contextMenu/src/jquery.contextMenu.js" type="text/javascript"></script>
+<script src="js/jQuery-contextMenu/prettify/prettify.js" type="text/javascript"></script>
+<script src="js/jQuery-contextMenu/screen.js" type="text/javascript"></script>
+
+<link href="js/jQuery-contextMenu/src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<link href="js/jQuery-contextMenu/screen.css" rel="stylesheet" type="text/css" />
+<link href="js/jQuery-contextMenu/prettify/prettify.sunburst.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <style>
@@ -127,6 +136,7 @@ body{
             <li><a href="?admin=wijzig_account">Wijzig account</a></li>
             <li><a href="?logout">Uitloggen</a></li>
             <li><a href="?admin=users">Users</a></li>
+            <li><a href="?admin=rollen">Rollen</a></li>
             <li><a href="?admin=users">Fora</a></li>
         </ul>
     </div>
@@ -142,7 +152,6 @@ body{
             <li><a href="?type=users">Users</a></li>
             <li><a href="?type=fora">Fora</a></li>
             <li><a href="?type=ranglijst">Ranglijst</a></li>
-            <li><a href="?type=admin">Admin</a></li>
         </ul>
     </div>
     

@@ -4,9 +4,8 @@ if($user->username != "admin"){
     header("location: index.php");
 }
 
-$PK_Gebruiker = (isset($_GET["id"])) ? $_GET["id"] : 0;
 $rollen = new Rollen();
-
+$PK_Gebruiker = (isset($_GET["id"])) ? $_GET["id"] : 0;
 
 if(isset($_POST["smtUser"])){
     

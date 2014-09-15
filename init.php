@@ -3,6 +3,9 @@ session_start();
 require_once("classes/Smarty-3.1.19/libs/Smarty.class.php");
 require_once("classes/user.inc.php");
 require_once("classes/rollen.inc.php");
+require_once("classes/subsites.inc.php");
+
+
 
 //database connectie opzetten. $db zal vervolgens in elke pagina beschikbaar zijn. Hoeft niet meer opnieuw gedaan te worden.
 try{
@@ -21,6 +24,7 @@ $header_template_file = "header.tpl";
 //aanmaken user object. Deze zal door de class gevuld worden en is overal benaderbaar
 $user = new User();
 
+
 if(!isset($_SERVER["HTTP_REFERER"])){
   unset($_SESSION["username"]);
   unset($_SESSION["password"]);
@@ -35,6 +39,8 @@ if(!isset($_SESSION["username"])){
     $password = (isset($_SESSION["username"])) ? $_SESSION["password"] : ""; 
 }
 
+
+
 if($user->login($username, $password)){
     $_SESSION["userid"] = $user->userid;
     $_SESSION["username"] = $user->username;
@@ -45,6 +51,7 @@ if($user->login($username, $password)){
     $smarty->assign("username", $user->username);
 }
 
+$load_header_template = true;
 
 if(isset($_GET["type"])){
     $include_file = $content_dir.$_GET["type"].".php";
@@ -54,4 +61,10 @@ if(isset($_GET["type"])){
 if(isset($_GET["admin"])){
     $include_file = $admin_content_dir.$_GET["admin"].".php";
     $template_file = $admin_templates_dir.$_GET["admin"].".tpl";
+}
+
+if(isset($_GET["ajax"])){
+    $include_file = $ajax_content_dir.$_GET["ajax"].".php";
+    $template_file = $ajax_templates_dir.$_GET["ajax"].".tpl";
+    $load_header_template = false;
 }

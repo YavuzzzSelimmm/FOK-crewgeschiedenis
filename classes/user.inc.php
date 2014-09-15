@@ -71,4 +71,16 @@ class User{
         }
     }
     
+    function delete_user($id){
+        global $db;
+       
+        try{
+            $stmt = $db->prepare("DELETE FROM Gebruiker WHERE PK_Gebruiker=:id");
+            $stmt->execute(array(":id" => $id));
+            
+        } catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    
 }
