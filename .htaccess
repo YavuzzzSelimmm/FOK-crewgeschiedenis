@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^user/([0-9]+)$ index.php?p=user&id=$1 [QSA,L]
+RewriteRule ^fok/([0-9]+)$ index.php?p=fok&id=$1 [QSA,L]
+RewriteRule ^forum/([0-9]+)$ index.php?p=forum&id=$1 [QSA,L]
+RewriteRule ^frontpage/([0-9]+)$ index.php?p=frontpage&id=$1 [QSA,L]
+RewriteRule ^game/([0-9]+)$ index.php?p=game&id=$1 [QSA,L]
+RewriteRule ^sport/([0-9]+)$ index.php?p=sport&id=$1 [QSA,L]
+RewriteRule ^ranglijst/([a-z]+)$ index.php?p=ranglijst&id=$1 [QSA,L]
+RewriteRule ^([a-z]+)$ index.php?p=$1 [QSA,L]

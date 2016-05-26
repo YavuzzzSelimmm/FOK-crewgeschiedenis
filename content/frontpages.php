@@ -1,6 +1,6 @@
 <div id="content" class="content">
 	<!-- begin page-header -->
-	<h1 class="page-header">Users</h1>
+	<h1 class="page-header">Frontpage <small>frontpage.fok.nl</small></h1>
 	<!-- end page-header -->
 			
 	<!-- begin row -->
@@ -8,15 +8,20 @@
 		<!-- begin col-12 -->
 		<div class="col-md-12">
 			<!-- begin panel -->
-			<div class="panel panel-inverse">				
+			<div class="panel panel-inverse">
+				<?php /*
+				<div class="panel-heading">
+					<h4 class="panel-title">Users</h4>
+				</div>
+				*/ ?>
+			
 				<?php $nr = 0;?>
 				<div class="panel-body">
 					<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>User</th>
-								<th>Registratiedatum</th>
+								<th>Functie</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -25,18 +30,15 @@
 							require('config.php'); 
 							
 							$con= new PDO( "mysql:host=" . $settings["dbserver"] . ";dbname=" . $settings["dbname"], $settings["dbuser"], $settings["dbpass"]);  
-							$sql=	"SELECT
-										  ID
-										, UserName
-										, UI
-										, RegistrationDate
-									FROM User
-									JOIN (SELECT DISTINCT User FROM Data) Data
-										ON User.UserName = Data.User
-									UNION ALL
-									SELECT '41894', 'du_ke', 'du_ke.gif', '2012-04-12' 
-									ORDER BY UserName
-									"; 
+							$sql=	"SELECT DISTINCT
+										  Unit.ID
+										, Unit.Name
+									FROM Unit
+									JOIN (SELECT DISTINCT Subsite, Unit FROM Data) Data
+										ON Unit.Subsite = Data.Subsite 
+										   AND Unit.Name = Data.Unit 
+									WHERE Unit.Subsite = 'Frontpage'
+									ORDER BY Unit.Name"; 
 								
 							$stmt=$con->prepare($sql);
 							$stmt->execute(); 
@@ -44,9 +46,7 @@
 							while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  
 								echo '<tr>';
 								echo '<td>' . ++$t . '</td>';
-								//echo '<td><img class="img-rounded" style="margin-right: 20px;" src="http://fokcrew.nl/ui/' . $row['UI'] . '" height="50" width="50"><a href="/user/'. $row['ID'] .'">' . $row['UserName'] . '</a></td>'; // NOT MOBILE FRIENDLY
-								echo '<td><a href="/user/'. $row['ID'] .'">' . $row['UserName'] . '</a></td>';
-								echo '<td>' . $row['RegistrationDate'] . '</td>';
+								echo '<td><a href="/frontpage/'. $row['ID'] .'">' . $row['Name'] . '</a></td>';
 								echo '</tr>';
 							}
 						} 
