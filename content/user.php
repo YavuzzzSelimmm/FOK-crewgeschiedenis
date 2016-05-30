@@ -353,8 +353,7 @@
 	</div>
 	<!-- end row -->
 	
-<?php 
-/*	
+
 	<!-- begin row -->
 	<div class="row">
 		<!-- begin col-12 -->
@@ -482,7 +481,5 @@ catch(PDOException $e) {
 		<!-- end col-12 -->
 	</div>
 	<!-- end row -->
-*/
-?>
-	
+
 </div>
